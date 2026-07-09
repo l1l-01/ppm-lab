@@ -1,15 +1,13 @@
 use std::{env, fs};
-
+ use std::fs::File;
+use std::io::Write;
 pub struct Pixcel {
     r: u8,
     g: u8,
     b: u8,
 }
 
-fn parser(args: Vec<String>){
-    fs::exists(&args[1]).expect("File path is wrong or file doesn't exist!");
-    fs::exists(&args[2]).expect("Filter wasn't provided!");
-
+fn parser(args: Vec<String>) -> (Vec<Pixcel>, Vec<u16>) {
     let img: String = fs::read_to_string(&args[1]).expect("Failed to read file!");
     let sensitized_data: String  = img.replace("\n", " ");
 
@@ -46,12 +44,40 @@ fn parser(args: Vec<String>){
     }
     
     let num_pixels: u64 = pixels.len() as u64;
-    println!("Number of pixels: {:?}", num_pixels);
-    println!("Meta Data: {:?}", metadata);
+    println!("Image width: {:?}\nHeight {:?}\nMax Value: {:?}\nNumber of pixels: {:?}", metadata[0], metadata[1], metadata[2],num_pixels);
+
+    return (pixels, metadata);
+}
+
+fn grayscale(pixels: Vec<Pixcel>, metadata: Vec<u16>) {
+    let mut file = File::create("img.ppm").expect("Failed to create file");
+    let mut data: String = "".to_string();
+
+    let md = format!("P3\n{} {} {}\n", metadata[0],metadata[1],metadata[2]);
+
+    data.push_str(&md);
+
+    for pixel in pixels {
+        let eff: u8 = ((0.2627 * pixel.r as f32) +  (0.6780 * pixel.g as f32) + (0.0593 * pixel.b as f32)) as u8;
+        let new_pixel = format!("{} {} {}\n", eff,eff,eff);
+        data.push_str(&new_pixel);
+    }
+
+    file.write_all(data.as_bytes()).expect("Failed to write image!")
+    
 }
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    parser(args);
+    fs::exists(&args[1]).expect("File path is wrong or file doesn't exist!");
+    fs::exists(&args[2]).expect("Filter is missing!");
+
+    if args[2] == "grayscale" {
+        let (pixels, metadata) = parser(args);
+        grayscale(pixels,metadata);
+    }else{
+        panic!("Unsupported filter {}!",args[2]);
+    }
+
 }
