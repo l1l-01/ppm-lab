@@ -67,17 +67,38 @@ fn grayscale(pixels: Vec<Pixcel>, metadata: Vec<u16>) {
     
 }
 
+fn invert(pixels: Vec<Pixcel>, metadata: Vec<u16>){
+let mut file = File::create("img.ppm").expect("Failed to create file");
+    let mut data: String = "".to_string();
+
+    let md = format!("P3\n{} {} {}\n", metadata[0],metadata[1],metadata[2]);
+
+    data.push_str(&md);
+
+    for pixel in pixels {
+        let r: u8 = 255 - pixel.r;
+        let g: u8 = 255 - pixel.g;
+        let b: u8 = 255 - pixel.b;
+        let new_pixel = format!("{} {} {}\n", r,g,b);
+        data.push_str(&new_pixel);
+    }
+
+    file.write_all(data.as_bytes()).expect("Failed to write image!")
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
     fs::exists(&args[1]).expect("File path is wrong or file doesn't exist!");
     fs::exists(&args[2]).expect("Filter is missing!");
 
-    if args[2] == "grayscale" {
-        let (pixels, metadata) = parser(args);
-        grayscale(pixels,metadata);
-    }else{
-        panic!("Unsupported filter {}!",args[2]);
+    
+    let filter = args[2].clone();
+    let (pixels, metadata) = parser(args);
+    match filter.as_str() {
+        "grayscale" => grayscale(pixels,metadata),
+        "invert" => invert(pixels,metadata),
+        _ => panic!("Please use a supported filter!"),
     }
 
 }
