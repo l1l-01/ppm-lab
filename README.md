@@ -10,7 +10,8 @@ PPM-LAB reads a PPM P3 image, applies a selected image filter, and writes the pr
 Examples:
 
 - Original image
-  ![grayscale](./screenshots/original.png)
+
+![grayscale](./screenshots/original.png)
 
 - Gray scale
 
