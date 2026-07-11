@@ -6,6 +6,7 @@ PPM-LAB reads a PPM P3 image, applies a selected image filter, and writes the pr
 
 - [x] Grayscale filter
 - [x] Invert filter
+- [x] Box blur filter
 
 Examples:
 
@@ -21,13 +22,21 @@ cargo run -- assets/moon.ppm grayscale
 
 ![grayscale](./screenshots/grayscale.png)
 
-- Invert Effect
+- Invert
 
 ```bash
 cargo run -- assets/moon.ppm invert
 ```
 
 ![invert](./screenshots/invert.png)
+
+- box blur
+
+```bash
+cargo run -- assets/moon.ppm boxblur
+```
+
+![box-blur](./screenshots/box_blur.png)
 
 ## Installation
 
@@ -57,7 +66,7 @@ cargo run -- image.ppm grayscale
 ```
 
 ```bash
-cargo run -- image.ppm invert
+cargo run -- image.ppm boxblur
 ```
 
 ## License
