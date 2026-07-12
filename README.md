@@ -47,7 +47,7 @@ cargo run -- examples/bailey-zindel-unsplash.ppm invert
 
 ![invert](/examples/invert.png)
 
-- Invert
+- Yellow
 
 ```bash
 cargo run -- examples/bailey-zindel-unsplash.ppm y
