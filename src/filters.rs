@@ -101,3 +101,16 @@ pub fn box_blur(pixels: &[Pixcel], metadata: &[u16], mut data: String) {
     file.write_all(data.as_bytes())
         .expect("Failed to write image!");
 }
+
+pub fn contrast(pixels: &[Pixcel], mut data: String) {
+    for pixel in pixels {
+        let r = ((pixel.r as i32 - 55) as f32 * 1.5 + 55.0) as u8;
+        let g = ((pixel.g as i32 - 55) as f32 * 1.5 + 55.0) as u8;
+        let b = ((pixel.b as i32 - 55) as f32 * 1.5 + 55.0) as u8;
+        let _ = writeln!(data, "{} {} {}", r, g, b);
+    }
+
+    let mut file: File = File::create("contrast.ppm").expect("Failed to create file");
+    file.write_all(data.as_bytes())
+        .expect("Failed to write image!");
+}

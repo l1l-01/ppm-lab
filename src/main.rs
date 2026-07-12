@@ -2,7 +2,7 @@ use std::{env, fs};
 mod filters;
 mod parser;
 mod types;
-use filters::{box_blur, grayscale, invert};
+use filters::{box_blur, contrast, grayscale, invert};
 use parser::parser;
 
 fn main() {
@@ -20,6 +20,7 @@ fn main() {
         "grayscale" => grayscale(&pixels, data),
         "invert" => invert(&pixels, data),
         "boxblur" => box_blur(&pixels, &metadata, data),
+        "contrast" => contrast(&pixels, data),
         _ => panic!("Please use a supported filter!"),
     }
 }
