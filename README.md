@@ -2,41 +2,66 @@
 
 PPM-LAB reads a PPM P3 image, applies a selected image filter, and writes the processed image back to disk.
 
-## Supported Filters
-
-- [x] Grayscale filter
-- [x] Invert filter
-- [x] Box blur filter
-
-Examples:
-
-- Original image
-
-![grayscale](./screenshots/original.png)
-
-- Gray scale
+## Usage
 
 ```bash
-cargo run -- assets/moon.ppm grayscale
+cargo run -- <img-path> <filter>
 ```
 
-![grayscale](./screenshots/grayscale.png)
+### Available Filters
+
+| Filter | Argument |
+|:-------|:---------|
+| Grayscale | `grayscale` |
+| Invert | `invert` |
+| Box Blur | `boxblur` |
+| Contrast | `contrast` |
+| Red | `r` |
+| Green | `g` |
+| Blue | `b` |
+| Magenta | `m` |
+| Yellow | `y` |
+| Cyan | `c` |
+| Blue and Green | `bg` |
+| Green and  Blue | `gb` |
+| Red and  Blue | `rb` |
+| Magenta and  Red | `mr` |
+| Red and  Green | `rg` |
+
+## Image Credits
+
+The sample images in the `examples/` directory were converted to the PPM P3 format from photographs on Unsplash.
+
+* **Bailey Zindel** — https://unsplash.com/photos/body-of-water-surrounded-by-trees-NRQV-hBF10M
+
+These images are used under the Unsplash License:
+https://unsplash.com/license
+
+Examples:
 
 - Invert
 
 ```bash
-cargo run -- assets/moon.ppm invert
+cargo run -- examples/bailey-zindel-unsplash.ppm invert
 ```
 
 ![invert](./screenshots/invert.png)
 
+- Invert
+
+```bash
+cargo run -- examples/bailey-zindel-unsplash.ppm y
+```
+
+![yellow](./exmaples/yellow.png)
+
 - box blur
 
 ```bash
-cargo run -- assets/moon.ppm boxblur
+cargo run -- examples/bailey-zindel-unsplash.ppm boxblur
 ```
 
-![box-blur](./screenshots/box_blur.png)
+![box-blur](./exmaples/box_blur.png)
 
 ## Installation
 
@@ -57,16 +82,6 @@ Or run it directly:
 
 ```bash
 cargo run -- <image_path> <filter>
-```
-
-## Usage
-
-```bash
-cargo run -- image.ppm grayscale
-```
-
-```bash
-cargo run -- image.ppm boxblur
 ```
 
 ## License
