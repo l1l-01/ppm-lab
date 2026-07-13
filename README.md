@@ -10,39 +10,31 @@ cargo run -- <img-path> <filter>
 
 ### Available Filters
 
-| Filter          | Argument    |
-| :-------------- | :---------- |
-| Grayscale       | `grayscale` |
-| Invert          | `invert`    |
-| Box Blur        | `boxblur`   |
-| Contrast        | `contrast`  |
-| Red             | `r`         |
-| Green           | `g`         |
-| Blue            | `b`         |
-| Magenta         | `m`         |
-| Yellow          | `y`         |
-| Cyan            | `c`         |
-| Blue and Green  | `bg`        |
-| Green and Blue  | `gb`        |
-| Red and Blue    | `rb`        |
-| Magenta and Red | `mr`        |
-| Red and Green   | `rg`        |
-
-## Image Credits
-
-The sample images in the `examples/` directory were converted to the PPM P3 format from photographs on Unsplash.
-
-- **Bailey Zindel** — https://unsplash.com/photos/body-of-water-surrounded-by-trees-NRQV-hBF10M
-
-These images are used under the Unsplash License:
-https://unsplash.com/license
+| Filter          | Argument     |
+| :-------------- | :----------- |
+| Grayscale       | `grayscale`  |
+| Invert          | `invert`     |
+| Box Blur        | `boxblur`    |
+| Contrast        | `contrast`   |
+| Saturation      | `saturation` |
+| Red             | `r`          |
+| Green           | `g`          |
+| Blue            | `b`          |
+| Magenta         | `m`          |
+| Yellow          | `y`          |
+| Cyan            | `c`          |
+| Blue and Green  | `bg`         |
+| Green and Blue  | `gb`         |
+| Red and Blue    | `rb`         |
+| Magenta and Red | `mr`         |
+| Red and Green   | `rg`         |
 
 Examples:
 
 - Invert
 
 ```bash
-cargo run -- examples/bailey-zindel-unsplash.ppm invert
+cargo run -- examples/img.ppm invert
 ```
 
 ![invert](/examples/invert.png)
@@ -50,7 +42,7 @@ cargo run -- examples/bailey-zindel-unsplash.ppm invert
 - Yellow
 
 ```bash
-cargo run -- examples/bailey-zindel-unsplash.ppm y
+cargo run -- examples/img.ppm y
 ```
 
 ![yellow](/examples/yellow.png)
@@ -58,7 +50,7 @@ cargo run -- examples/bailey-zindel-unsplash.ppm y
 - box blur
 
 ```bash
-cargo run -- examples/bailey-zindel-unsplash.ppm boxblur
+cargo run -- examples/img.ppm boxblur
 ```
 
 ![box-blur](/examples/box_blur.png)
