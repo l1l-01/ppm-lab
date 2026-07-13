@@ -11,7 +11,7 @@ use color::{
     blue, blue_green, cyan, green, green_blue, magenta, magenta_blue, magenta_red, red, red_blue,
     yellow,
 };
-use other::{contrast, grayscale, invert};
+use other::{contrast, grayscale, invert, saturation};
 use parser::parser;
 
 fn main() {
@@ -36,6 +36,7 @@ fn main() {
             "invert" => invert(&pixels, data),
             "boxblur" => box_blur(&pixels, &metadata, data),
             "contrast" => contrast(&pixels, data),
+            "saturation" => saturation(&pixels, data),
             "g" => green(&pixels, data),
             "r" => red(&pixels, data),
             "b" => blue(&pixels, data),
