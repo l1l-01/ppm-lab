@@ -9,7 +9,7 @@ mod types;
 use blur::box_blur;
 use color::{
     blue, blue_green, cyan, green, green_blue, magenta, magenta_blue, magenta_red, red, red_blue,
-    yellow,
+    sepia, yellow,
 };
 use other::{contrast, grayscale, invert, saturation};
 use parser::parser;
@@ -37,6 +37,7 @@ fn main() {
             "boxblur" => box_blur(&pixels, &metadata, data),
             "contrast" => contrast(&pixels, data),
             "saturation" => saturation(&pixels, data),
+            "sepia" => sepia(&pixels, data),
             "g" => green(&pixels, data),
             "r" => red(&pixels, data),
             "b" => blue(&pixels, data),

@@ -112,3 +112,19 @@ pub fn magenta_blue(pixels: &[Pixcel], mut data: String) {
     file.write_all(data.as_bytes())
         .expect("Failed to write image!");
 }
+
+pub fn sepia(pixels: &[Pixcel], mut data: String) {
+    for pixel in pixels {
+        let r: u8 =
+            (0.393 * pixel.r as f32 + 0.769 * pixel.g as f32 + 0.189 * pixel.b as f32) as u8;
+        let g: u8 =
+            (0.349 * pixel.r as f32 + 0.686 * pixel.g as f32 + 0.168 * pixel.b as f32) as u8;
+        let b: u8 =
+            (0.272 * pixel.r as f32 + 0.534 * pixel.g as f32 + 0.131 * pixel.b as f32) as u8;
+        let _ = writeln!(data, "{} {} {}", r, g, b);
+    }
+
+    let mut file: File = File::create("sepia.ppm").expect("Failed to create file");
+    file.write_all(data.as_bytes())
+        .expect("Failed to write image!");
+}
